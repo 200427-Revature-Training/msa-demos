@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
@@ -34,8 +36,29 @@ public class BookController {
 		return bookService.getBookById(id);
 	}
 	
+	
+	
 	@GetMapping
-	public List<Book> getBooks() {
+	public List<Book> getBooks(
+			@RequestParam(required=false) Integer authorId) {
+		
+		if(authorId != null) {
+			return getBooksbyAuthorId(authorId);
+		} else {
+			return getAllBooks();
+		}
+	}
+	
+	@PutMapping
+	public Book updateBook(@RequestBody Book book) {
+		return bookService.updateBook(book);
+	}
+
+	private List<Book> getBooksbyAuthorId(Integer authorId) {
+		return bookService.getBooksByAuthorId(authorId);
+	}
+
+	private List<Book> getAllBooks() {
 		return bookService.getAllBooks();
 	}
 

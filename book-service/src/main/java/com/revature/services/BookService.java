@@ -28,5 +28,13 @@ public class BookService {
 	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
+
+	public List<Book> getBooksByAuthorId(Integer authorId) {
+		return bookRepository.findBooksByAuthorId(authorId);
+	}
+
+	public Book updateBook(Book book) {
+		return bookRepository.save(book);
+	}
 	
 }

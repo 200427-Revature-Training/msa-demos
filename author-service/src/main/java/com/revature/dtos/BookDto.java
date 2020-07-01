@@ -1,36 +1,15 @@
-package com.revature.entities;
+package com.revature.dtos;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
-
-@Entity
-@Table(name = "books")
-public class Book {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+/**
+ * DTO - Data Transfer Object Not the entity, but a convenient way to track it
+ */
+public class BookDto {
 	private int id;
-
-	@NotNull
 	private String title;
-
-	@Column(name = "release_date")
 	private LocalDate releaseDate;
-
-	@Positive
-	@Column(name = "page_count")
 	private int pageCount;
-	
-	@Column(name = "author_id", nullable=true)
 	private Integer authorId;
 
 	public int getId() {
@@ -77,7 +56,7 @@ public class Book {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + authorId;
+		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
 		result = prime * result + id;
 		result = prime * result + pageCount;
 		result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
@@ -93,8 +72,11 @@ public class Book {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Book other = (Book) obj;
-		if (authorId != other.authorId)
+		BookDto other = (BookDto) obj;
+		if (authorId == null) {
+			if (other.authorId != null)
+				return false;
+		} else if (!authorId.equals(other.authorId))
 			return false;
 		if (id != other.id)
 			return false;
@@ -115,12 +97,11 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", releaseDate=" + releaseDate + ", pageCount=" + pageCount
+		return "BookDto [id=" + id + ", title=" + title + ", releaseDate=" + releaseDate + ", pageCount=" + pageCount
 				+ ", authorId=" + authorId + "]";
 	}
 
-	public Book(int id, @NotNull String title, LocalDate releaseDate, @Positive int pageCount,
-			@PositiveOrZero Integer authorId) {
+	public BookDto(int id, String title, LocalDate releaseDate, int pageCount, Integer authorId) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -129,7 +110,7 @@ public class Book {
 		this.authorId = authorId;
 	}
 
-	public Book() {
+	public BookDto() {
 		super();
 	}
 

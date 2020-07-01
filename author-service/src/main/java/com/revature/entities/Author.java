@@ -1,6 +1,7 @@
 package com.revature.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.revature.dtos.BookDto;
 
 @Entity
 @Table(name="authors")
@@ -27,6 +31,9 @@ public class Author {
 	@Column(name="birth_date")
 	private LocalDate birthDate;
 
+	@Transient
+	private List<BookDto> books;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,6 +56,14 @@ public class Author {
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<BookDto> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<BookDto> books) {
+		this.books = books;
 	}
 
 	@Override

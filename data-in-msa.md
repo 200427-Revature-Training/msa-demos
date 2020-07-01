@@ -13,3 +13,4 @@ Asynchronous communication occurs when an application action requires subsequent
 
 # Transition from ACID to BASE 
 (Basic Availibility, Soft State, and Eventual Consistency)
+Example: S3 PUT requests have eventual consistency for replace-puts and immediate consistency for new puts.
