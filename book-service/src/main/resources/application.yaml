@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: book-service  datasource:    url: jdbc:postgresql://${NODE_APP_URL}/postgres
+    password: ${NODE_APP_PASS}
+    username: ${NODE_APP_ROLE}
+    driver-class-name: org.postgresql.Driver
+  jpa:    hibernate:      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+  
+server:  port: 8010
+  
