@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import com.revature.dtos.AuthorDto;
 import com.revature.entities.Book;
 import com.revature.repositories.BookRepository;
 
@@ -35,6 +36,10 @@ public class BookService {
 
 	public Book updateBook(Book book) {
 		return bookRepository.save(book);
+	}
+	
+	public void deleteBooksByAuthorId(AuthorDto author) {
+		bookRepository.deleteBooksByAuthorId(author.getId());
 	}
 	
 }

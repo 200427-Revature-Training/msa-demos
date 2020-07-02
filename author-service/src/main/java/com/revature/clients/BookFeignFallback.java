@@ -1,7 +1,10 @@
 package com.revature.clients;
 
+import org.springframework.stereotype.Component;
+
 import com.revature.dtos.BookDto;
 
+@Component
 public class BookFeignFallback implements BookFeign {
 
 	@Override
