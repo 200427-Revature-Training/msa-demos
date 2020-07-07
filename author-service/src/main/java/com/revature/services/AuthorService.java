@@ -55,9 +55,10 @@ public class AuthorService {
 	public Author deleteAuthor(int id) {
 		Author author = authorRepository.findById(id)
 				.orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+		System.out.println(author);
 		
 		authorRepository.delete(author);
-		
+		System.out.println(author);
 		// Send message to SNS
 		authorMessenger.sendAuthorDeletionMessage(author);
 		

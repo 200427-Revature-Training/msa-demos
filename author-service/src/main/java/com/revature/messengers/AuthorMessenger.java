@@ -41,6 +41,12 @@ public class AuthorMessenger implements InitializingBean {
 	private AmazonSNS snsClient;
 	private Logger logger = Logger.getLogger(AuthorMessenger.class);
 	
+	/**
+	 * 1. This class is instantiated
+	 * 2. Spring populates fields with values (@Value or @Autowired)
+	 * 2.5 Spring calls afterPropertiesSet method
+	 * 3. Bean is ready
+	 */
 	@Override
 	public void afterPropertiesSet() {
 		BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretAccessKey);

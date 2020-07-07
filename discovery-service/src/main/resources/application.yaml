@@ -1,12 +1,0 @@
-eureka:
-  client:
-    register-with-eureka: false
-
-# Eureka's default port
-server:  port: 8761
-
-ribbon:  eager-load:    clients:    - book-service
-    - author-service
-
-
-spring:  application:    name: discovery-service

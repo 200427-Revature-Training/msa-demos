@@ -1,0 +1,15 @@
+server:
+  port: 8888
+  
+spring:  application:    name: config-service
+  profiles:    active:    - native
+# Profiles - Profiles allow us to set profile based configuration.  Configuration
+# will adopt configuration details specified for that specific profile allowing
+# flexible configuration. We can also define beans that are made available only
+# with (or without) specific profiles using the @Profile annotation above a bean
+# bean declaration.
+
+# In Spring Cloud Config - the 'native' profile is a special profile that enables
+# native sourcing of configuration. Essentially, configuration details can live
+# in the configuration server rather than be loaded from some external source such as
+# a git repo, a vault, or network location, etc.
